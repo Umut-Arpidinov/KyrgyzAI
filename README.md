@@ -1,2 +1,2 @@
 # KyrgyzAI
-Application to learn kyrgyz language by detecting object around you and labeling their names
+Application to learn kyrgyz language by detecting objects around and labeling their names
