@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.0"
-kotlin = "1.9.0"
+kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -15,11 +15,13 @@ mlKitObjectObjectDetection = "17.0.2"
 googleLibrariesBom = "19.2.1"
 cloudVision = "1.102.0"
 coroutines = "1.7.1"
-
-
+objLoader = "0.2.1"
+navigation =  "2.7.6"
+roomVersion = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -37,8 +39,17 @@ kotlinStdLib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "k
 kotlinStdLibJdk = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin" }
 coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutinesPlayServices = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
+objLoader = { module = "de.javagl:obj", version.ref = "objLoader" }
+navFragment = {module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation"}
+navUi = {module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation"}
+navCommon = {module = "androidx.navigation:navigation-common-ktx", version.ref = "navigation"}
+safeArgs = {module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation"}
+roomRuntime = {module = "androidx.room:room-runtime", version.ref = "roomVersion"}
+roomCompiler = {module = "androidx.room:room-compiler", version.ref = "roomVersion"}
+roomKtx = {module = "androidx.room:room-ktx", version.ref = "roomVersion"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

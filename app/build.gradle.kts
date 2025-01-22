@@ -1,11 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "edu.alatoo.kyrgyzlearning"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "edu.alatoo.kyrgyzlearning"
@@ -26,23 +27,62 @@ android {
             )
         }
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/gradle/incremental.annotation.processors"
+        }
+    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/DEPENDENCIES"
+            excludes += "/META-INF/INDEX.LIST"
+
+        }
+    }
+
 }
 
 dependencies {
 
+
+
+    // Android dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+
+    // Coroutines
+    implementation(libs.kotlinStdLib)
+    implementation(libs.kotlinStdLibJdk)
+    implementation(libs.coroutinesPlayServices)
+    implementation(libs.coroutinesCore)
+
+    // Object detection libs
+    implementation(libs.arcore)
+
+    // Room dependencies
+    implementation(libs.roomRuntime)
+    ksp(libs.roomCompiler)
+
+    //test libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    api(project(":object-detection"))
+
+
+
+
 }

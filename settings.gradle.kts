@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Kyrgyz Lerning"
 include(":app")
+include(":object-detection")
