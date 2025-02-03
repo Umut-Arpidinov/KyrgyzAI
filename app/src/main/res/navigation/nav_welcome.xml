@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_welcome"
+    app:startDestination="@id/firstLaunchLanguageFragment">
+
+
+    <fragment
+        android:id="@+id/firstLaunchLanguageFragment"
+        android:name="edu.alatoo.kyrgyzlearning.presentation.ui.onboarding.FirstLaunchLanguageFragment"
+        android:label="FirstLaunchLanguageFragment"
+        tools:layout="@layout/fragment_first_launch_language"
+        />
+
+
+    <action
+        android:id="@+id/toNavMain"
+        app:destination="@id/mainFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_welcome"
+        app:popUpToInclusive="true"
+        />
+
+    <action
+        android:id="@+id/toNavFirstLaunch"
+        app:destination="@id/nav_welcome"
+        app:launchSingleTop="true"
+        />
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="edu.alatoo.kyrgyzlearning.presentation.ui.main.MainFragment"
+        tools:layout="@layout/fragment_main"
+        android:label="MainFragment" />
+</navigation>

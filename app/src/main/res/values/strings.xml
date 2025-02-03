@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Kyrgyz Lerning</string>
+
+
+    <string name="error_unknown_error">Неизвестная ошибка</string>
+    <string name="error_timeout">Извините, плохое интернет - соединение!</string>
+    <string name="error_network_error">Ошибка при подключении</string>
+    <string name="error_gateway_timeout">Время ожидания ответа истекло!</string>
+
+    <string name="detection">Обнаружение</string>
+    <string name="dictionary">Словарь</string>
+    <string name="settings">Настройки</string>
+    <string name="learning">Обучение</string>
+
+    <string name="scan_busy">Scanning…</string>
+    <string name="scan_available">Scan</string>
+    <string name="clear">Clear</string>
+    <string name="use_cloud_ml">Use Cloud ML</string>
+
 </resources>

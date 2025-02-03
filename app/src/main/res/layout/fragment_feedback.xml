@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/AppBaseStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvTitleFeedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        style="@style/RegularRobotoBlack18"
+        android:text="Type your feedback"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        />
+
+    <EditText
+        android:id="@+id/etFeedback"
+        android:background="@drawable/gray_rounded_bg"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleFeedback"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="14dp"
+        android:padding="14dp"
+        android:inputType="text"
+        android:imeOptions="actionSend"
+        android:hint="Type Your notes"
+        android:gravity="top"
+        style="@style/RegularRobotoBlack16"
+        android:layout_height="124dp"/>
+
+
+
+
+    <Button
+        android:id="@+id/btnOpenScanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="24dp"
+        android:enabled="true"
+        android:textColor="@color/black_222222"
+        android:text="Send"
+        />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

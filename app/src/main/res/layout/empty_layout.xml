@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_search_empty"
+        android:adjustViewBounds="true"
+        />
+    
+    <TextView
+        android:id="@+id/tvEmptyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        style="@style/RegularRobotoBlack16"
+        android:text="Your recent words will appear here after scanning."
+        />
+    
+
+</LinearLayout>

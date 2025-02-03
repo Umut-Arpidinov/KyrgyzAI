@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -39,6 +40,9 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
     packaging {
         resources {
@@ -73,12 +77,32 @@ dependencies {
 
     // Room dependencies
     implementation(libs.roomRuntime)
+    implementation(libs.roomKtx)
     ksp(libs.roomCompiler)
 
     //test libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Koin
+    implementation(libs.koinAndroid)
+    implementation(libs.koinCore)
+    implementation(libs.koinNavigation)
+
+    // Navigation
+    implementation(libs.navUi)
+    implementation(libs.navCommon)
+    implementation(libs.navFragment)
+
+    implementation(libs.timber)
+
+    // Network
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.logginInterceptor)
+    implementation(libs.chucker)
+
 
     api(project(":object-detection"))
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/AppBaseStyle"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/gray_rounded_bg"
+        android:orientation="vertical"
+        android:padding="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <TextView
+            style="@style/RegularRobotoBlack14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose language" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupLanguage"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:divider="@color/grey_CECECE"
+            android:showDividers="middle"
+            android:layout_height="wrap_content"
+            >
+
+            <RadioButton
+                android:id="@+id/rbKyrgyz"
+                android:layout_width="match_parent"
+                android:text="Kyrgyz"
+                style="@style/RegularRobotoBlack18"
+                android:layoutDirection="rtl"
+                android:checked="true"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/rbRussian"
+                android:layout_width="match_parent"
+                android:text="Russian"
+                style="@style/RegularRobotoBlack18"
+                android:layoutDirection="rtl"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/rbEnglish"
+                android:layout_width="match_parent"
+                android:text="English"
+                style="@style/RegularRobotoBlack18"
+                android:layoutDirection="rtl"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
