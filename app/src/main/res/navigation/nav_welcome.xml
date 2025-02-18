@@ -33,4 +33,13 @@
         android:name="edu.alatoo.kyrgyzlearning.presentation.ui.main.MainFragment"
         tools:layout="@layout/fragment_main"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/objectDetectionFragment"
+        android:name="edu.alatoo.kyrgyzlearning.presentation.ui.objectDetection.ObjectDetectionFragment"
+        android:label="ObjectDetectionFragment" />
+
+    <action
+        android:id="@+id/toObjectDetectionFragment"
+        app:destination="@id/objectDetectionFragment"
+        />
 </navigation>

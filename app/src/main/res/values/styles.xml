@@ -40,4 +40,15 @@
         <item name="trackTint">@color/switch_track_selector</item>
     </style>
 
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:theme">@style/Theme.KyrgyzLerning</item>
+        <item name="bottomSheetStyle">@style/ModayStyle</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+
+    <style name="ModayStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

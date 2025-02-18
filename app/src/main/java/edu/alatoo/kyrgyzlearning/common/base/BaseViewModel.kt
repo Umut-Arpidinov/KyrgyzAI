@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.alatoo.kyrgyzlearning.common.utils.ApiResult
+import edu.alatoo.kyrgyzlearning.common.utils.LocalDbResult
 import edu.alatoo.kyrgyzlearning.common.utils.MessageException
 import edu.alatoo.kyrgyzlearning.common.utils.SingleLiveEvent
 import edu.alatoo.kyrgyzlearning.common.utils.StringMessageException
@@ -96,23 +97,17 @@ abstract class BaseViewModel : ViewModel(), CoroutineScope {
     }
 
     protected inline fun <T> dbRequest(
-        crossinline source: suspend CoroutineScope.() -> T,
+        crossinline source: suspend CoroutineScope.() -> LocalDbResult<T>,
         crossinline onError: (Throwable) -> Unit = { },
         crossinline onFinally: () -> Unit = {},
         crossinline onSuccess: (data: T) -> Unit,
     ) {
         viewModelScope.launch {
             setLoading(true)
-            try {
-                val result = withContext(Dispatchers.IO) { source() }
-                onSuccess(result)
-            } catch (e: Exception) {
-                onError(e)
-                postError(e)
-            } finally {
-                setLoading(false)
-                onFinally()
-            }
+            val result = source()
+            setLoading(false)
+            processDbResult(result, onError, onSuccess)
+            onFinally()
         }
     }
 
@@ -130,7 +125,20 @@ abstract class BaseViewModel : ViewModel(), CoroutineScope {
             }
 
         }
+    }
 
+    protected inline fun <T> processDbResult(
+        result: LocalDbResult<T>,
+        crossinline onError: (Throwable) -> Unit = { },
+        crossinline onSuccess: (data: T) -> Unit
+    ) {
+        when (result) {
+            is LocalDbResult.Success -> onSuccess(result.data)
+            is LocalDbResult.Error -> {
+                onError(result.throwable)
+                if (!result.handled) postError(result.throwable)
+            }
+        }
     }
 
 

@@ -3,6 +3,7 @@ package edu.alatoo.kyrgyzlearning
 import android.app.Application
 import edu.alatoo.kyrgyzlearning.di.appModule
 import edu.alatoo.kyrgyzlearning.di.repositoryModule
+import edu.alatoo.kyrgyzlearning.di.useCaseModule
 import edu.alatoo.kyrgyzlearning.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -18,8 +19,8 @@ class ProjectApplication: Application() {
                 listOf(
                     appModule,
                     repositoryModule,
-                    viewModelModule,
-
+                    useCaseModule,
+                    viewModelModule
                 )
             )
         }

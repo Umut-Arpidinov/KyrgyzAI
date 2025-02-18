@@ -2,10 +2,10 @@ package edu.alatoo.kyrgyzlearning.data.local
 
 import android.content.SharedPreferences
 import edu.alatoo.kyrgyzlearning.data.local.db.KyrgyzLearningDataBase
+import edu.alatoo.kyrgyzlearning.data.local.db.dao.DictionaryDao
 
 class LocalDataSourceImpl(
-    private val preferences: SharedPreferences,
-    private val appDp: KyrgyzLearningDataBase
+    private val preferences: SharedPreferences
 ) : LocalDataSource {
 
     override var chosenNativeLanguage: String?

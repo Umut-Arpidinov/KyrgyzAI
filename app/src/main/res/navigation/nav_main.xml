@@ -10,7 +10,11 @@
         android:name="edu.alatoo.kyrgyzlearning.presentation.ui.dictionary.DictionaryFragment"
         android:label="DictionaryFragment"
         tools:layout="@layout/fragment_dictionary"
-        />
+        >
+        <action
+            android:id="@+id/toWordDetailScreen"
+            app:destination="@id/wordDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/objectDetectionFragment"
         android:name="edu.alatoo.kyrgyzlearning.presentation.ui.objectDetection.ObjectDetectionFragment"
@@ -66,6 +70,22 @@
         android:label="FeedbackFragment"
         tools:layout="@layout/fragment_feedback"
         />
+
+    <action
+        android:id="@+id/toObjectDetectionFragment"
+        app:destination="@id/objectDetectionFragment"
+        />
+    <fragment
+        android:id="@+id/wordDetailFragment"
+        android:name="edu.alatoo.kyrgyzlearning.presentation.ui.dictionary.wordDetail.WordDetailFragment"
+        android:label="WordDetailFragment"
+        tools:layout="@layout/fragment_word_detail">
+        <argument
+            app:argType="integer"
+            android:name="wordId"
+            app:nullable="false"
+            />
+    </fragment>
 
 
 </navigation>

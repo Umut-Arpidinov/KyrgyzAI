@@ -5,6 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import edu.alatoo.kyrgyzlearning.data.local.db.dao.DictionaryDao
+import edu.alatoo.kyrgyzlearning.data.local.db.entities.Example
+import edu.alatoo.kyrgyzlearning.data.local.db.entities.Synonym
+import edu.alatoo.kyrgyzlearning.data.local.db.entities.Translation
 import edu.alatoo.kyrgyzlearning.data.local.db.entities.Word
 import java.io.BufferedReader
 import java.io.File
@@ -13,7 +16,7 @@ import java.io.InputStreamReader
 
 
 @Database(
-    entities = [Word::class],
+    entities = [Word::class, Synonym::class, Translation::class, Example::class],
     version = 1,
     exportSchema = false
 )
@@ -23,6 +26,7 @@ abstract class KyrgyzLearningDataBase : RoomDatabase() {
 
     companion object {
         private const val DATABASE_NAME = "KyrgyzLearningDataBase"
+
         @Volatile
         private var INSTANCE: KyrgyzLearningDataBase? = null
 

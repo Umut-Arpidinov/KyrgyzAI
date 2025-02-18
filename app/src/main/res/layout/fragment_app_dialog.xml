@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="80dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        >
+
+        <TextView
+            android:id="@+id/tvMessage"
+            style="@style/RegularRobotoBlack14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="lorem ipsum rwerwerwerwerwerwerwerwerwerwer"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent" />
+
+         <LinearLayout
+             android:id="@+id/llActions"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             app:layout_constraintTop_toBottomOf="@id/tvMessage"
+             android:layout_marginTop="20dp"
+             android:gravity="center"
+             android:visibility="gone"
+             android:orientation="horizontal">
+
+             <TextView
+                 android:id="@+id/btnNo"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="50"
+                 android:gravity="center"
+                 android:textColor="@color/primaryMain"
+                 android:text="@string/cancel"
+                 android:textAllCaps="false"
+                 style="@style/RegularRobotoBlack14"
+                 />
+
+             <View
+                 android:layout_width="0.5dp"
+                 android:layout_height="18dp"
+                 android:background="@color/grey_AEAEAE"
+                 />
+
+             <TextView
+                 android:id="@+id/btnYes"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/уeas_dialog"
+                 android:layout_weight="50"
+                 android:gravity="center"
+                 android:textAllCaps="false"
+                 android:textColor="@color/primaryMain"
+                 style="@style/RegularRobotoBlack14"
+                 />
+         </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/horizontalDivider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvMessage" />
+
+        <TextView
+            android:id="@+id/btnOk"
+            style="@style/MediumRobotoBlack18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:text="@string/ok_message"
+            android:textAllCaps="true"
+            android:textColor="@color/primaryMain"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalDivider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

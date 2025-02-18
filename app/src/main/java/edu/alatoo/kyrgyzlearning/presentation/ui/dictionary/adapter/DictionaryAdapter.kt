@@ -11,11 +11,7 @@ import edu.alatoo.kyrgyzlearning.databinding.ItemWordBinding
 class DictionaryAdapter : ListAdapter<Word, DictionaryAdapter.BranchViewHolder>(DiffUtils) {
 
 
-    private var onWordListener: ((Word) -> Unit)? = null
-
-    fun onWordListener(listener: (Word) -> Unit) {
-        onWordListener = listener
-    }
+    var onWordListener: ((Word) -> Unit)? = null
 
     inner class BranchViewHolder(val binding: ItemWordBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -53,7 +49,7 @@ class DictionaryAdapter : ListAdapter<Word, DictionaryAdapter.BranchViewHolder>(
             }
 
             override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
-                return oldItem == newItem
+                return oldItem.word == newItem.word
             }
         }
     }

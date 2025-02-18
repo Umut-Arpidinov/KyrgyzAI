@@ -17,7 +17,6 @@
 package edu.alatoo.kyrgyzlearning.presentation.ui.apprender
 
 import android.app.Activity
-import android.widget.Toast
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.google.ar.core.ArCoreApk
@@ -101,19 +100,4 @@ class ARCoreSessionLifecycleHelper(
     sessionCache = null
   }
 
-  fun onRequestPermissionsResult(
-    requestCode: Int,
-    permissions: Array<out String>,
-    grantResults: IntArray
-  ) {
-    if (!CameraPermissionHelper.hasCameraPermission(activity)) {
-      Toast.makeText(activity, "Camera permission is needed to run this application", Toast.LENGTH_LONG)
-        .show()
-      if (!CameraPermissionHelper.shouldShowRequestPermissionRationale(activity)) {
-        // Permission denied with checking "Do not ask again".
-        CameraPermissionHelper.launchPermissionSettings(activity)
-      }
-      activity.finish()
-    }
-  }
 }

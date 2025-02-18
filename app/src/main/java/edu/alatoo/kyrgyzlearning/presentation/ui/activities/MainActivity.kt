@@ -6,6 +6,7 @@ import androidx.navigation.NavHost
 import edu.alatoo.kyrgyzlearning.NavWelcomeDirections
 import edu.alatoo.kyrgyzlearning.R
 import edu.alatoo.kyrgyzlearning.common.base.BaseActivity
+import edu.alatoo.kyrgyzlearning.common.helpers.FullScreenHelper
 import edu.alatoo.kyrgyzlearning.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

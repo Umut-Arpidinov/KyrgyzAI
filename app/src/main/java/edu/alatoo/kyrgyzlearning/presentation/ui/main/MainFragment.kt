@@ -2,12 +2,14 @@ package edu.alatoo.kyrgyzlearning.presentation.ui.main
 
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import edu.alatoo.kyrgyzlearning.NavMainDirections
+import edu.alatoo.kyrgyzlearning.NavWelcomeDirections
 import edu.alatoo.kyrgyzlearning.R
 import edu.alatoo.kyrgyzlearning.common.base.BaseFragment
 import edu.alatoo.kyrgyzlearning.databinding.FragmentMainBinding
 import edu.alatoo.kyrgyzlearning.presentation.extensions.gone
-import edu.alatoo.kyrgyzlearning.presentation.extensions.show
 import edu.alatoo.kyrgyzlearning.presentation.extensions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,6 +23,15 @@ class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>(
     override fun initialize() {
         super.initialize()
         initNavigation()
+    }
+
+    override fun initClicks() = with(binding){
+        super.initClicks()
+        fabScan.setOnClickListener {
+            findNavController().navigate(
+                NavWelcomeDirections.toObjectDetectionFragment()
+            )
+        }
     }
 
 

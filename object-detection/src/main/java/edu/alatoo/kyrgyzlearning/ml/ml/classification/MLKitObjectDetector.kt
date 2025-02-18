@@ -31,7 +31,7 @@ import kotlinx.coroutines.tasks.asDeferred
  */
 class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
   // To use a custom model, follow steps on https://developers.google.com/ml-kit/vision/object-detection/custom-models/android.
-   val model = LocalModel.Builder().setAssetFilePath("translated_ky.tflite").build()
+   val model = LocalModel.Builder().setAssetFilePath("models/translated_ky.tflite").build()
 
 
 
@@ -63,7 +63,4 @@ class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
       DetectedObjectResult(bestLabel.confidence, bestLabel.text, rotatedCoordinates)
     }
   }
-
-  @Suppress("USELESS_IS_CHECK")
-  fun hasCustomModel() = builder is CustomObjectDetectorOptions.Builder
 }

@@ -16,5 +16,12 @@
     <string name="scan_available">Scan</string>
     <string name="clear">Clear</string>
     <string name="use_cloud_ml">Use Cloud ML</string>
+    <string name="translationHeader">Translation:</string>
+    <string name="exampleHeader">Example:</string>
+    <string name="ok_message">Ок</string>
+    <string name="уeas_dialog">Yes</string>
+    <string name="no_dialog">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="vertex_feature_info">All data is generated using Google Gemini AI and may not always be accurate. Ensure an internet connection for the best results.</string>
 
 </resources>

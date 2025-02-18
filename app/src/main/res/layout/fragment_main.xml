@@ -26,6 +26,7 @@
         app:itemActiveIndicatorStyle="@color/transparent"
         app:itemIconTint="@color/bottom_nav_text_selector"
         app:itemPaddingBottom="25dp"
+        android:visibility="gone"
         app:itemRippleColor="@color/transparent"
         app:itemTextAppearanceActive="@style/BottomAppBarTextStyle"
         app:itemTextAppearanceInactive="@style/BottomAppBarTextStyle"
@@ -36,16 +37,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/app_menu" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabScan"
-            android:contentDescription="TODO"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/yellow_main"
-            app:borderWidth="0dp"
-            android:src="@drawable/ic_scan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabScan"
+        android:contentDescription="TODO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/yellow_main"
+        android:src="@drawable/ic_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

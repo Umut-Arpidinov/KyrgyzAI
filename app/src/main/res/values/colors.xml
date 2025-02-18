@@ -23,5 +23,9 @@
 
     <color name="gray_F1F1F1">#F1F1F1</color>
     <color name="grey_CECECE">#CECECE</color>
-
+    <color name="grey_E7E7E7">#E7E7E7</color>
+    <color name="grey_FAFAFA">#FAFAFA</color>
+    
+    
+    <color name="green_38B000">#38B000</color>
 </resources>

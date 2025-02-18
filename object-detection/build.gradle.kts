@@ -49,7 +49,6 @@ dependencies {
     implementation(libs.coroutinesCore)
 
 
-
     // Object detection libs
     implementation(libs.tensorflow)
     implementation(libs.arcore)
@@ -58,5 +57,7 @@ dependencies {
     platform(libs.googleLibrariesBom)
     implementation(libs.googleCloudVision)
     implementation(libs.objLoader)
+    implementation("com.google.android.filament:filament-android:1.42.0")
+    implementation("com.google.android.filament:gltfio-android:1.42.0")  // For loading 3D text models
 
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "139676559717",
+    "project_id": "kyrgyz-ai",
+    "storage_bucket": "kyrgyz-ai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139676559717:android:36ac90bfdab39064f9998c",
+        "android_client_info": {
+          "package_name": "edu.alatoo.kyrgyzlearning"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpG8jVxLxB5sNOTRLZaLNPBOYUDCWajXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

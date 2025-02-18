@@ -16,6 +16,9 @@
 
 package edu.alatoo.kyrgyzlearning.ml.ml.render
 
+import android.graphics.Paint
+import android.graphics.Path
+import android.util.Log
 import com.google.ar.core.Pose
 import edu.alatoo.kyrgyzlearning.common.samplerender.Mesh
 import edu.alatoo.kyrgyzlearning.common.samplerender.SampleRender
@@ -77,6 +80,8 @@ class LabelRender {
 
   val cache = TextTextureCache()
 
+
+
   lateinit var mesh: Mesh
   lateinit var shader: Shader
 
@@ -120,3 +125,5 @@ class LabelRender {
     render.draw(mesh, shader)
   }
 }
+
+

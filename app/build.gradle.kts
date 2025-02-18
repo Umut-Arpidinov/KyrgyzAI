@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -65,6 +67,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    // Firebase
+    implementation(platform(libs.firebaseBom))
 
     // Coroutines
     implementation(libs.kotlinStdLib)
@@ -89,7 +93,6 @@ dependencies {
     implementation(libs.koinAndroid)
     implementation(libs.koinCore)
     implementation(libs.koinNavigation)
-
     // Navigation
     implementation(libs.navUi)
     implementation(libs.navCommon)
@@ -102,7 +105,9 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logginInterceptor)
     implementation(libs.chucker)
-
+    implementation(libs.vertexAi)
+    implementation("com.google.android.filament:filament-android:1.42.0")
+    implementation("com.google.android.filament:gltfio-android:1.42.0")  // For loading 3D text models
 
     api(project(":object-detection"))
 

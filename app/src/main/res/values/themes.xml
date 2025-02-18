@@ -11,6 +11,7 @@
     <style name="Theme.KyrgyzLerning" parent="Base.Theme.KyrgyzLerning">
         <item name="colorPrimary">@color/primaryMain</item>
         <item name="colorPrimaryVariant">@color/yellow_main</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="colorOnPrimary">@color/transparent</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary_main</item>

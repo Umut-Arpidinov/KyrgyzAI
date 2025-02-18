@@ -51,4 +51,11 @@ fun View.show() {
     isVisible = true
 }
 
+fun View.enable() {
+    isEnabled = true
+}
+
+fun View.disable() {
+    isEnabled = false
+}
 
