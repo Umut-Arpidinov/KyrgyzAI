@@ -24,7 +24,21 @@ class VertexAIRepositoryImpl(
             val prompt = """
             Generate three example sentences using the word "$word" in Kyrgyz. 
             Each sentence should be translated into Russian and English.
-            Return only the sentences, one per line, without labels or formatting.
+            
+            Return the output in the following format:
+            
+            [Kyrgyz Sentence]  
+            [Russian Translation]  
+            [English Translation]  
+            
+            Example:
+            
+            Мен китеп окуп жатам.  
+            Я читаю книгу.  
+            I am reading a book.  
+            
+            Now generate three examples for "$word" following this format.
+            Do not include any label title or formatting just clear examples 
         """.trimIndent()
 
             vertexModel.generateContent(prompt).text

@@ -23,7 +23,6 @@
         android:queryBackground="@color/transparent"
         android:queryHint="Search"
         android:searchIcon="@drawable/ic_search"
-
         android:textColorHint="@color/blue_4361EE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="14dp"
-        android:paddingBottom="70dp"
+        android:layout_marginBottom="90dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

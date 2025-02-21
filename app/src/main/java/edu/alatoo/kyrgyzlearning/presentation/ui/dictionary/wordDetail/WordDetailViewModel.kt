@@ -62,15 +62,28 @@ class WordDetailViewModel(
 
     private fun fetchAndSaveTranslation(wordId: Int, word: String) {
         networkRequest(
-            source = { vertexAIRepository.getTranslations(word) }
-        ) { aiTranslation ->
-            _translations.value = aiTranslation
-            aiTranslation?.let {
-                dbRequest(
-                    source = { dictionaryRepository.saveTranslations(Translation(wordId= wordId, translation = it))}
-                ) {} // ✅ Auto-save translation to Room
+            source = { vertexAIRepository.getTranslations(word) },
+            onError = {
+                it.printStackTrace()
+
+            },
+            onSuccess = { aiTranslation ->
+                _translations.value = aiTranslation
+                aiTranslation?.let {
+                    dbRequest(
+                        source = {
+                            dictionaryRepository.saveTranslations(
+                                Translation(
+                                    wordId = wordId,
+                                    translation = it
+                                )
+                            )
+                        }
+                    ) {} // ✅ Auto-save translation to Room
+                }
+
             }
-        }
+        )
     }
 
     private fun fetchAndSaveExample(wordId: Int, word: String) {

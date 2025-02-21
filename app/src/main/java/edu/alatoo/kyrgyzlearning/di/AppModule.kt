@@ -25,5 +25,6 @@ val appModule = module {
     single { ErrorConverter(get()) }
     single<GenerativeModel> {
         Firebase.vertexAI.generativeModel("gemini-1.5-flash")
+
     }
 }

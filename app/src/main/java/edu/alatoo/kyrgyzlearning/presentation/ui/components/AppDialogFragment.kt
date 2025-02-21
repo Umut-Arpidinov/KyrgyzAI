@@ -22,7 +22,7 @@ class AppDialogFragment :
 
     override fun initialize() = with(binding) {
         super.initialize()
-        tvMessage.text = message ?: "Ошибка"
+        tvMessage.text = message
         setDialogViewsByType()
     }
 

@@ -50,15 +50,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvTranslationHeader"
-            style="@style/RegularRobotoBlack16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginTop="14dp"
-            android:text="@string/translationHeader"
-            app:layout_constraintTop_toBottomOf="@id/llWord" />
 
         <LinearLayout
             android:id="@+id/llTranslation"
@@ -68,33 +59,41 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/stroked_background"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tvTranslationHeader">
+            app:layout_constraintTop_toBottomOf="@id/llWord">
 
+            <TextView
+                android:id="@+id/tvTranslationHeader"
+                style="@style/BoldRobotoBlue14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginTop="14dp"
+                android:textColor="@color/primary_main"
+                android:text="@string/translationHeader"
+                app:layout_constraintTop_toBottomOf="@id/llWord" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="14dp"
+                app:dividerColor="@color/grey_CECECE"
+                android:layout_marginVertical="4dp"
+                android:layout_height="0.5dp"/>
             <FrameLayout
                 android:layout_width="match_parent"
+                android:padding="14dp"
                 android:layout_height="wrap_content">
-
                 <TextView
                     android:id="@+id/tvTranslationPlaceholder"
+                    style="@style/MediumRobotoBlack18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:hint="Get translations"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="30dp"
-                    android:textColorHint="@color/grey_AEAEAE" />
+                    android:hint="Generating tranlsation ..."
+                    android:textColor="@color/primaryMain"
+                    android:textColorHint="@color/grey_AEAEAE"
+                    />
             </FrameLayout>
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvExampleHeader"
-            style="@style/RegularRobotoBlack16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="14dp"
-            android:layout_marginTop="14dp"
-            android:text="@string/exampleHeader"
-            app:layout_constraintTop_toBottomOf="@id/llTranslation" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/llExample"
@@ -102,18 +101,41 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="14dp"
             android:layout_marginTop="8dp"
+            android:orientation="vertical"
             android:background="@drawable/stroked_background"
-            app:layout_constraintTop_toBottomOf="@id/tvExampleHeader">
+            app:layout_constraintTop_toBottomOf="@id/llTranslation">
 
             <TextView
-                android:id="@+id/tvExamplePlaceholder"
-                style="@style/RegularRobotoBlack14"
+                android:id="@+id/tvExampleHeader"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Get examples"
-                android:paddingHorizontal="14dp"
-                android:paddingVertical="30dp"
-                android:textColorHint="@color/grey_AEAEAE" />
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginTop="14dp"
+                style="@style/BoldRobotoBlue14"
+                android:text="@string/exampleHeader"
+                app:layout_constraintTop_toBottomOf="@id/llTranslation" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="14dp"
+                app:dividerColor="@color/grey_CECECE"
+                android:layout_marginVertical="4dp"
+                android:layout_height="0.5dp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp">
+
+                <TextView
+                    android:id="@+id/tvExamplePlaceholder"
+                    style="@style/RegularRobotoBlack14"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Generating examples ..."
+                    android:textColor="@color/primary_main"
+                    android:textColorHint="@color/grey_AEAEAE" />
+            </FrameLayout>
+
+
         </LinearLayout>
 
 

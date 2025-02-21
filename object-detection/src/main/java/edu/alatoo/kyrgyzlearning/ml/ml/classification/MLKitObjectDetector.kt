@@ -30,14 +30,14 @@ import kotlinx.coroutines.tasks.asDeferred
  * Analyzes an image using ML Kit.
  */
 class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
-  // To use a custom model, follow steps on https://developers.google.com/ml-kit/vision/object-detection/custom-models/android.
+
+
    val model = LocalModel.Builder().setAssetFilePath("models/translated_ky.tflite").build()
 
 
 
    val builder = CustomObjectDetectorOptions.Builder(model)
 
-  // For the ML Kit default model, use the following:
 
   private val options = builder
     .setDetectorMode(CustomObjectDetectorOptions.SINGLE_IMAGE_MODE)
@@ -47,10 +47,9 @@ class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
   private val detector = ObjectDetection.getClient(options)
 
   override suspend fun analyze(image: Image, imageRotation: Int): List<DetectedObjectResult> {
-    // `image` is in YUV (https://developers.google.com/ar/reference/java/com/google/ar/core/Frame#acquireCameraImage()),
+
     val convertYuv = convertYuv(image)
 
-    // The model performs best on upright images, so rotate it.
     val rotatedImage = ImageUtils.rotateBitmap(convertYuv, imageRotation)
 
     val inputImage = InputImage.fromBitmap(rotatedImage, 0)
