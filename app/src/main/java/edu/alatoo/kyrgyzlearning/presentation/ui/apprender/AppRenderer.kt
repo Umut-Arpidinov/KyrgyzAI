@@ -158,15 +158,15 @@ class AppRenderer(
                 when {
                     objects.isEmpty() ->
                         showSnackBar(
-                            "Default ML Kit classification model returned no results. " +
-                                    "For better classification performance, see the README to configure a custom model."
+                            "Default ML Kit classification model returned no results. "
+
                         )
 
-                   /* anchors.size != objects.size ->
+                    anchors.size != objects.size ->
                         showSnackBar(
                             "Objects were classified, but could not be attached to an anchor. " +
                                     "Try moving your device around to obtain a better understanding of the environment."
-                        )*/
+                        )
                 }
             }
         }

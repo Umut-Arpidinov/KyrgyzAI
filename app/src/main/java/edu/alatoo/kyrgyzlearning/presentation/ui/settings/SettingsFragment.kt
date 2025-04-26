@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import edu.alatoo.kyrgyzlearning.common.base.BaseFragment
 import edu.alatoo.kyrgyzlearning.databinding.FragmentSettingsBinding
 import edu.alatoo.kyrgyzlearning.presentation.extensions.hide
+import edu.alatoo.kyrgyzlearning.presentation.extensions.navigateWithAnimation
 
 class SettingsFragment: BaseFragment<SettingsViewModel, FragmentSettingsBinding>(
     FragmentSettingsBinding::inflate
@@ -20,25 +21,25 @@ class SettingsFragment: BaseFragment<SettingsViewModel, FragmentSettingsBinding>
         super.initClicks()
 
         tvAbout.setOnClickListener {
-            findNavController().navigate(
+            findNavController().navigateWithAnimation(
                 SettingsFragmentDirections.toAboutFragment()
             )
         }
 
         tvFeedback.setOnClickListener {
-            findNavController().navigate(
+            findNavController().navigateWithAnimation(
                 SettingsFragmentDirections.toFeedbackFragment()
             )
         }
 
         tvLanguage.setOnClickListener {
-            findNavController().navigate(
+            findNavController().navigateWithAnimation(
                 SettingsFragmentDirections.toLanguageFragment()
             )
         }
 
         tvTheme.setOnClickListener {
-            findNavController().navigate(
+            findNavController().navigateWithAnimation(
                 SettingsFragmentDirections.toThemeFragment()
             )
         }

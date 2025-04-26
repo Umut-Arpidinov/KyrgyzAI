@@ -32,6 +32,10 @@ public class Texture implements Closeable {
   private final int[] textureId = {0};
   private final Target target;
 
+  // Add width and height properties
+  private int width = 0;
+  private int height = 0;
+
   /**
    * Describes the way the texture's edges are rendered.
    *
@@ -123,11 +127,47 @@ public class Texture implements Closeable {
     }
   }
 
+  /**
+   * Create a texture from bitmap data.
+   *
+   * @param bitmap The bitmap to create texture from
+   * @param colorFormat The color format to use
+   */
+  public void loadFromBitmap(Bitmap bitmap, ColorFormat colorFormat) {
+    try {
+      // Store the dimensions for later use
+      this.width = bitmap.getWidth();
+      this.height = bitmap.getHeight();
+
+      ByteBuffer buffer = ByteBuffer.allocateDirect(bitmap.getByteCount());
+      bitmap.copyPixelsToBuffer(buffer);
+      buffer.rewind();
+
+      GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, textureId[0]);
+      GLError.maybeThrowGLException("Failed to bind texture", "glBindTexture");
+      GLES30.glTexImage2D(
+              GLES30.GL_TEXTURE_2D,
+              /*level=*/ 0,
+              colorFormat.glesEnum,
+              width,
+              height,
+              /*border=*/ 0,
+              GLES30.GL_RGBA,
+              GLES30.GL_UNSIGNED_BYTE,
+              buffer);
+      GLError.maybeThrowGLException("Failed to populate texture data", "glTexImage2D");
+      GLES30.glGenerateMipmap(GLES30.GL_TEXTURE_2D);
+      GLError.maybeThrowGLException("Failed to generate mipmaps", "glGenerateMipmap");
+    } catch (Throwable t) {
+      close();
+      throw t;
+    }
+  }
 
   /** Create a texture from the given asset file name. */
   public static Texture createFromAsset(
-      SampleRender render, String assetFileName, WrapMode wrapMode, ColorFormat colorFormat)
-      throws IOException {
+          SampleRender render, String assetFileName, WrapMode wrapMode, ColorFormat colorFormat)
+          throws IOException {
     Texture texture = new Texture(render, Target.TEXTURE_2D, wrapMode);
     Bitmap bitmap = null;
     try {
@@ -137,9 +177,14 @@ public class Texture implements Closeable {
       // Load and convert the bitmap and copy its contents to a direct ByteBuffer. Despite its name,
       // the ARGB_8888 config is actually stored in RGBA order.
       bitmap =
-          convertBitmapToConfig(
-              BitmapFactory.decodeStream(render.getAssets().open(assetFileName)),
-              Bitmap.Config.ARGB_8888);
+              convertBitmapToConfig(
+                      BitmapFactory.decodeStream(render.getAssets().open(assetFileName)),
+                      Bitmap.Config.ARGB_8888);
+
+      // Store the dimensions
+      texture.width = bitmap.getWidth();
+      texture.height = bitmap.getHeight();
+
       ByteBuffer buffer = ByteBuffer.allocateDirect(bitmap.getByteCount());
       bitmap.copyPixelsToBuffer(buffer);
       buffer.rewind();
@@ -147,15 +192,15 @@ public class Texture implements Closeable {
       GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, texture.getTextureId());
       GLError.maybeThrowGLException("Failed to bind texture", "glBindTexture");
       GLES30.glTexImage2D(
-          GLES30.GL_TEXTURE_2D,
-          /*level=*/ 0,
-          colorFormat.glesEnum,
-          bitmap.getWidth(),
-          bitmap.getHeight(),
-          /*border=*/ 0,
-          GLES30.GL_RGBA,
-          GLES30.GL_UNSIGNED_BYTE,
-          buffer);
+              GLES30.GL_TEXTURE_2D,
+              /*level=*/ 0,
+              colorFormat.glesEnum,
+              bitmap.getWidth(),
+              bitmap.getHeight(),
+              /*border=*/ 0,
+              GLES30.GL_RGBA,
+              GLES30.GL_UNSIGNED_BYTE,
+              buffer);
       GLError.maybeThrowGLException("Failed to populate texture data", "glTexImage2D");
       GLES30.glGenerateMipmap(GLES30.GL_TEXTURE_2D);
       GLError.maybeThrowGLException("Failed to generate mipmaps", "glGenerateMipmap");
@@ -182,6 +227,16 @@ public class Texture implements Closeable {
   /** Retrieve the native texture ID. */
   public int getTextureId() {
     return textureId[0];
+  }
+
+  /** Get the width of the texture. */
+  public int getWidth() {
+    return width;
+  }
+
+  /** Get the height of the texture. */
+  public int getHeight() {
+    return height;
   }
 
   /* package-private */

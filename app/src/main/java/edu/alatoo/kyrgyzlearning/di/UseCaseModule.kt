@@ -1,5 +1,6 @@
 package edu.alatoo.kyrgyzlearning.di
 
+import edu.alatoo.kyrgyzlearning.domain.usecases.GetLastFiveWordsUseCase
 import edu.alatoo.kyrgyzlearning.domain.usecases.GetWordByIdUseCase
 import edu.alatoo.kyrgyzlearning.domain.usecases.GetWordsFromDbUseCase
 import edu.alatoo.kyrgyzlearning.domain.usecases.SaveWordsUseCase
@@ -12,4 +13,6 @@ val useCaseModule = module {
     single { GetWordsFromDbUseCase(get()) }
 
     single { GetWordByIdUseCase(get()) }
+
+    single { GetLastFiveWordsUseCase(get()) }
 }

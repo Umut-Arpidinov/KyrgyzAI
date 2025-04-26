@@ -32,7 +32,7 @@ import kotlinx.coroutines.tasks.asDeferred
 class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
 
 
-   val model = LocalModel.Builder().setAssetFilePath("models/translated_ky.tflite").build()
+   val model = LocalModel.Builder().setAssetFilePath("models/translated_ky_new.tflite").build()
 
 
 
@@ -42,7 +42,6 @@ class MLKitObjectDetector(context: Activity) : ObjectDetector(context) {
   private val options = builder
     .setDetectorMode(CustomObjectDetectorOptions.SINGLE_IMAGE_MODE)
     .enableClassification()
-    .enableMultipleObjects()
     .build()
   private val detector = ObjectDetection.getClient(options)
 

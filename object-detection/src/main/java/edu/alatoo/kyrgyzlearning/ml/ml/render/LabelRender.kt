@@ -1,24 +1,5 @@
-/*
- * Copyright 2021 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package edu.alatoo.kyrgyzlearning.ml.ml.render
 
-import android.graphics.Paint
-import android.graphics.Path
-import android.util.Log
 import com.google.ar.core.Pose
 import edu.alatoo.kyrgyzlearning.common.samplerender.Mesh
 import edu.alatoo.kyrgyzlearning.common.samplerender.SampleRender
@@ -45,13 +26,13 @@ class LabelRender {
         put(
           floatArrayOf(
             /*0:*/
-            -1.5f, -1.5f,
+            -1.0f, -1.0f,
             /*1:*/
-            1.5f, -1.5f,
+            1.0f, -1.0f,
             /*2:*/
-            -1.5f, 1.5f,
+            -1.0f, 1.0f,
             /*3:*/
-            1.5f, 1.5f,
+            1.0f, 1.0f,
           )
         )
       }
@@ -79,8 +60,6 @@ class LabelRender {
   }
 
   val cache = TextTextureCache()
-
-
 
   lateinit var mesh: Mesh
   lateinit var shader: Shader
@@ -117,13 +96,23 @@ class LabelRender {
     labelOrigin[0] = pose.tx()
     labelOrigin[1] = pose.ty()
     labelOrigin[2] = pose.tz()
+
+    // Get the texture for this label
+    val texture = cache.get(render, label)
+
+    // Calculate aspect ratio (width/height) of the texture
+    val aspectRatio = texture.getWidth().toFloat() / texture.getHeight().toFloat()
+
+    // Scale factor can be adjusted based on your needs
+    val baseScale = 0.1f
+
     shader
       .setMat4("u_ViewProjection", viewProjectionMatrix)
       .setVec3("u_LabelOrigin", labelOrigin)
       .setVec3("u_CameraPos", cameraPose.translation)
-      .setTexture("uTexture", cache.get(render, label))
+      .setFloat("u_AspectRatio", aspectRatio)  // Pass aspect ratio to shader
+      .setFloat("u_BaseScale", baseScale)      // Pass base scale to shader
+      .setTexture("uTexture", texture)
     render.draw(mesh, shader)
   }
 }
-
-

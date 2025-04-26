@@ -1,30 +1,12 @@
-/*
- * Copyright 2021 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package edu.alatoo.kyrgyzlearning.ml.ml.render
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.Typeface
-import android.opengl.GLES30
-import edu.alatoo.kyrgyzlearning.common.samplerender.GLError
 import edu.alatoo.kyrgyzlearning.common.samplerender.SampleRender
 import edu.alatoo.kyrgyzlearning.common.samplerender.Texture
-import java.nio.ByteBuffer
 
 /**
  * Generates and caches GL textures for label names.
@@ -50,26 +32,11 @@ class TextTextureCache {
     val texture = Texture(render, Texture.Target.TEXTURE_2D, Texture.WrapMode.CLAMP_TO_EDGE)
 
     val bitmap = generateBitmapFromString(string)
-    val buffer = ByteBuffer.allocateDirect(bitmap.byteCount)
-    bitmap.copyPixelsToBuffer(buffer)
-    buffer.rewind()
+    // Use the new method to load bitmap into texture
+    texture.loadFromBitmap(bitmap, Texture.ColorFormat.LINEAR)
 
-    GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, texture.textureId)
-    GLError.maybeThrowGLException("Failed to bind texture", "glBindTexture")
-    GLES30.glTexImage2D(
-      GLES30.GL_TEXTURE_2D,
-      0,
-      GLES30.GL_RGBA8,
-      bitmap.width,
-      bitmap.height,
-      0,
-      GLES30.GL_RGBA,
-      GLES30.GL_UNSIGNED_BYTE,
-      buffer
-    )
-    GLError.maybeThrowGLException("Failed to populate texture data", "glTexImage2D")
-    GLES30.glGenerateMipmap(GLES30.GL_TEXTURE_2D)
-    GLError.maybeThrowGLException("Failed to generate mipmaps", "glGenerateMipmap")
+    // Recycle bitmap after use
+    bitmap.recycle()
 
     return texture
   }
@@ -90,16 +57,46 @@ class TextTextureCache {
   }
 
   private fun generateBitmapFromString(string: String): Bitmap {
-    val w = 256
-    val h = 256
+    // Measure text dimensions
+    val bounds = Rect()
+    textPaint.getTextBounds(string, 0, string.length, bounds)
+
+    // Add padding around the text to prevent cutoff
+    val padding = 24  // Add significant padding to avoid text cutoff
+    val w = bounds.width() + padding * 2
+    val h = bounds.height() + padding * 2
+
+    // Make sure dimensions are power of 2 for better texture performance (optional)
+    // val texWidth = nextPowerOfTwo(w)
+    // val texHeight = nextPowerOfTwo(h)
+
     return Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888).apply {
-      eraseColor(0)
+      eraseColor(0)  // Transparent background
 
       Canvas(this).apply {
-        drawText(string, w / 2f, h / 2f, strokePaint)
+        // Calculate proper text positioning to center in the bitmap
+        val centerX = w / 2f
+        val centerY = h / 2f + (bounds.height() / 2f) - bounds.bottom
 
-        drawText(string, w / 2f, h / 2f, textPaint)
+        // Draw the text with a black outline first
+        drawText(string, centerX, centerY, strokePaint)
+
+        // Then draw the colored text
+        drawText(string, centerX, centerY, textPaint)
       }
     }
+  }
+
+  // Helper function to get next power of 2 (optional)
+  private fun nextPowerOfTwo(n: Int): Int {
+    var value = n
+    value--
+    value = value or (value shr 1)
+    value = value or (value shr 2)
+    value = value or (value shr 4)
+    value = value or (value shr 8)
+    value = value or (value shr 16)
+    value++
+    return value
   }
 }

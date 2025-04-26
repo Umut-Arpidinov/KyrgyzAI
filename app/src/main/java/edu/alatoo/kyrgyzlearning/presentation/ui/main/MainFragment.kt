@@ -10,6 +10,7 @@ import edu.alatoo.kyrgyzlearning.R
 import edu.alatoo.kyrgyzlearning.common.base.BaseFragment
 import edu.alatoo.kyrgyzlearning.databinding.FragmentMainBinding
 import edu.alatoo.kyrgyzlearning.presentation.extensions.gone
+import edu.alatoo.kyrgyzlearning.presentation.extensions.navigateWithAnimation
 import edu.alatoo.kyrgyzlearning.presentation.extensions.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,8 +29,8 @@ class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>(
     override fun initClicks() = with(binding){
         super.initClicks()
         fabScan.setOnClickListener {
-            findNavController().navigate(
-                NavWelcomeDirections.toObjectDetectionFragment()
+            findNavController().navigateWithAnimation(
+                MainFragmentDirections.toObjectDetectionFragment()
             )
         }
     }
@@ -42,15 +43,12 @@ class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>(
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id !in SHOW_BOTTOM_NAV_VIEW_LIST) {
                 hideNavigationBar()
-            } else {
-                showNavigationBar()
-            }
-
-            if (destination.id !in SHOW_SCAN_BUTTON_LIST) {
                 hideFloatingButton()
             } else {
+                showNavigationBar()
                 showFloatingButton()
             }
+
         }
 
         binding.bottomNavView.setupWithNavController(navController)
@@ -85,6 +83,7 @@ class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>(
             R.id.dictionaryFragment,
             R.id.homeFragment,
             R.id.settingsFragment,
+            R.id.learningFragment
         )
 
         private val SHOW_SCAN_BUTTON_LIST = setOf(

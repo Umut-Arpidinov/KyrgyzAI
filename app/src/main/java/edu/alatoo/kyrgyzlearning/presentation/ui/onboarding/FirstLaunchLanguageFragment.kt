@@ -8,6 +8,7 @@ import edu.alatoo.kyrgyzlearning.common.utils.ENGLISH
 import edu.alatoo.kyrgyzlearning.common.utils.KYRGYZ
 import edu.alatoo.kyrgyzlearning.common.utils.RUSSIAN
 import edu.alatoo.kyrgyzlearning.databinding.FragmentFirstLaunchLanguageBinding
+import edu.alatoo.kyrgyzlearning.presentation.extensions.navigateWithAnimation
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FirstLaunchLanguageFragment :
@@ -55,7 +56,7 @@ class FirstLaunchLanguageFragment :
 
     private fun navigateToMainNav() {
         findNavController()
-            .navigate(NavWelcomeDirections.toNavMain())
+            .navigateWithAnimation(NavWelcomeDirections.toNavMain())
     }
 
 

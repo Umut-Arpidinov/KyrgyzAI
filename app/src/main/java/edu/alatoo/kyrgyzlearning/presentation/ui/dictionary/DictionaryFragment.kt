@@ -5,6 +5,7 @@ import edu.alatoo.kyrgyzlearning.common.base.BaseFragment
 import edu.alatoo.kyrgyzlearning.data.local.db.entities.Word
 import edu.alatoo.kyrgyzlearning.databinding.FragmentDictionaryBinding
 import edu.alatoo.kyrgyzlearning.presentation.extensions.hide
+import edu.alatoo.kyrgyzlearning.presentation.extensions.navigateWithAnimation
 import edu.alatoo.kyrgyzlearning.presentation.extensions.setAdjustNothing
 import edu.alatoo.kyrgyzlearning.presentation.extensions.showSimpleDialog
 import edu.alatoo.kyrgyzlearning.presentation.ui.dictionary.adapter.DictionaryAdapter
@@ -30,7 +31,7 @@ class DictionaryFragment : BaseFragment<DictionaryViewModel, FragmentDictionaryB
         super.initClicks()
         adapter.onWordListener = {
             it.id?.let {
-                findNavController().navigate(DictionaryFragmentDirections.toWordDetailScreen(it))
+                findNavController().navigateWithAnimation(DictionaryFragmentDirections.toWordDetailScreen(it))
             }
         }
     }

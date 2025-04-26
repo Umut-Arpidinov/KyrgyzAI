@@ -4,9 +4,11 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import edu.alatoo.kyrgyzlearning.data.local.db.entities.Example
 import edu.alatoo.kyrgyzlearning.data.local.db.entities.Translation
 import edu.alatoo.kyrgyzlearning.data.local.db.entities.Word
+import edu.alatoo.kyrgyzlearning.data.local.db.entities.WordWithDetails
 
 
 @Dao
@@ -36,6 +38,13 @@ interface DictionaryDao {
 
     @Query("SELECT * FROM translations WHERE wordId = :wordId")
     suspend fun getTranslationById(wordId: Int): Translation?
+
+    @Query("SELECT * FROM dictionary ORDER BY id DESC LIMIT 5")
+    suspend fun getLastFiveWords(): List<Word>
+
+    @Transaction
+    @Query("SELECT * FROM dictionary")
+    suspend fun getAllWordsWithDetails(): List<WordWithDetails>
 
 
 }

@@ -23,11 +23,18 @@ out vec2 vTexPos;
 uniform mat4 u_ViewProjection;
 uniform vec3 u_CameraPos;
 uniform vec3 u_LabelOrigin;
+uniform float u_AspectRatio;
+uniform float u_BaseScale;
 
 void main() {
-  vTexPos = aTexPos;
-  vec3 labelNormal = normalize(u_CameraPos - u_LabelOrigin);
-  vec3 labelSide = -cross(labelNormal, vec3(0.0, 1.0, 0.0));
-  vec3 modelPosition = u_LabelOrigin + aPosition.x*0.1 * labelSide + aPosition.y * vec3(0.0, 1.0, 0.0)*0.1;
-  gl_Position = u_ViewProjection * vec4(modelPosition, 1.0);
+    vTexPos = aTexPos;
+    vec3 labelNormal = normalize(u_CameraPos - u_LabelOrigin);
+    vec3 labelSide = -cross(labelNormal, vec3(0.0, 1.0, 0.0));
+
+    // Apply aspect ratio to horizontal scale to preserve text proportions
+    vec3 modelPosition = u_LabelOrigin +
+    aPosition.x * u_BaseScale * u_AspectRatio * labelSide +
+    aPosition.y * vec3(0.0, 1.0, 0.0) * u_BaseScale;
+
+    gl_Position = u_ViewProjection * vec4(modelPosition, 1.0);
 }

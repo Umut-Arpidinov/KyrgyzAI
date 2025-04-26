@@ -5,6 +5,8 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
     id("kotlin-parcelize")
+    id("com.google.firebase.crashlytics")
+
 }
 
 android {
@@ -106,8 +108,8 @@ dependencies {
     implementation(libs.logginInterceptor)
     implementation(libs.chucker)
     implementation(libs.vertexAi)
-    implementation("com.google.android.filament:filament-android:1.42.0")
-    implementation("com.google.android.filament:gltfio-android:1.42.0")  // For loading 3D text models
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
 
     api(project(":object-detection"))
 
